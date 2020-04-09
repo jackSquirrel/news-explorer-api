@@ -1,0 +1,20 @@
+{
+  "name": "news-explorer-server",
+  "version": "1.0.0",
+  "description": "api for news-explorer",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackSquirrel/news-explorer-api.git"
+  },
+  "author": "Timur Ismagilov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackSquirrel/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/jackSquirrel/news-explorer-api#readme"
+}
