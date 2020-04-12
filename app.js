@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const { usersRouter } = require('./routes/users');
+const { articleRouter } = require('./routes/articles');
 
 const { PORT = 3000 } = process.env;
 
@@ -28,5 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use('/users', usersRouter);
+app.use('/articles', articleRouter);
 
 app.listen(PORT);
