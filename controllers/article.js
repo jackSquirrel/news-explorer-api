@@ -1,4 +1,8 @@
 const Article = require('../models/article');
+const ValidationError = require('../errors/validation-error');
+const NotFoundError = require('../errors/not-found');
+const NotEnoughRights = require('../errors/no-rights');
+const { validationError, articleNotFound, noRightsToRem, castErr } = require('../errors/error-messages');
 
 const getArticles = (req, res, next) => {
   Article.find({ owner: req.user._id })
@@ -41,7 +45,7 @@ const deleteArticle = (req, res, next) => {
         })
         .catch(next);
     })
-    .catch((err)=>{
+    .catch((err) => {
       if (err.name === 'CastError') {
         next(new ValidationError(castErr));
         return;

@@ -1,15 +1,15 @@
 const validationError = 'Ошибка валидации';
 const articleNotFound = 'Статья не найдена';
-const userNotFound = 'Пользователь не найден';
-const noRightsToRem = 'Недостаточно прав, чтобы удалить карточку';
-const authError = 'Неправильная почта или пароль';
+const noRightsToRem = 'Недостаточно прав, чтобы удалить статью';
+const wrongData = 'Неправильная почта или пароль';
+const authError = 'Ошибка авторизации';
 const castErr = 'Ошибка при поиске. Проверьте правильность введенных данных';
 
 module.exports = {
   validationError,
   articleNotFound,
-  userNotFound,
   noRightsToRem,
   castErr,
-  authError
+  authError,
+  wrongData
 };

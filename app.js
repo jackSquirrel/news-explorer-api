@@ -11,6 +11,7 @@ const { usersRouter } = require('./routes/users');
 const { articleRouter } = require('./routes/articles');
 const { auth } = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
+const NotFoundError = require('./errors/not-found');
 
 const { PORT = 3000 } = process.env;
 
