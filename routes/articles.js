@@ -23,9 +23,9 @@ router.post('/', celebrate({
   })
 }), createArticle);
 
-router.delete('/articleId', celebrate({
+router.delete('/:articleId', celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().alphanum().required()
+    articleId: Joi.string().alphanum().required()
   }).unknown(true),
   query: Joi.object().keys({
     user: Joi.object().keys({
@@ -34,4 +34,4 @@ router.delete('/articleId', celebrate({
   })
 }), deleteArticle);
 
-module.exports = { router };
+module.exports = router;

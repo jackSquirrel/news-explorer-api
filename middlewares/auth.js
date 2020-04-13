@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const key = require('../keys/token_key');
+const { key } = require('../keys/token_key');
 const AuthError = require('../errors/auth-error');
 const { authError } = require('../errors/error-messages');
 

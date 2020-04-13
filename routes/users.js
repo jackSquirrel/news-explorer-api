@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const { getUsers } = require('../controllers/user');
+const { getUser } = require('../controllers/user');
 
 router.get('/me', celebrate({
   query: Joi.object().keys({
@@ -8,8 +8,6 @@ router.get('/me', celebrate({
       _id: Joi.string().required()
     })
   }).unknown(true)
-}), getUsers);
+}), getUser);
 
-module.exports = {
-  router
-};
+module.exports = router;

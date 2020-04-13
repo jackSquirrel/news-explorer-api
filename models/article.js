@@ -43,6 +43,7 @@ const articleSchema = new mongoose.Schema({
     ref: 'user',
     required: true
   }
-});
+},
+{ versionKey: false });
 
 module.exports = mongoose.model('article', articleSchema);

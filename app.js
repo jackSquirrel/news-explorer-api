@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -7,8 +8,8 @@ const { celebrate, Joi, errors } = require('celebrate');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { createUser, login } = require('./controllers/user');
-const { usersRouter } = require('./routes/users');
-const { articleRouter } = require('./routes/articles');
+const usersRouter = require('./routes/users');
+const articleRouter = require('./routes/articles');
 const { auth } = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const NotFoundError = require('./errors/not-found');
@@ -39,14 +40,14 @@ app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().regex(/[-.\w]+@[-\w]+\.[a-z]+/),
     name: Joi.string().required().min(2).max(30),
-    password: Joi.string().required().min(5)
+    password: Joi.string().required().alphanum().min(5)
   })
 }), createUser);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().regex(/[-.\w]+@[-\w]+\.[a-z]+/),
-    password: Joi.string().required().min(5)
+    password: Joi.string().required()
   })
 }), login);
 
