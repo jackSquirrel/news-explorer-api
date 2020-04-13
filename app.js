@@ -3,13 +3,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const { celebrate, Joi } = require('celebrate');
+const { celebrate, Joi, errors } = require('celebrate');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { createUser, login } = require('./controllers/user');
 const { usersRouter } = require('./routes/users');
 const { articleRouter } = require('./routes/articles');
 const { auth } = require('./middlewares/auth');
+const { errorMiddleware } = require('./middlewares/errorMiddleware');
 
 const { PORT = 3000 } = process.env;
 
@@ -52,7 +53,12 @@ app.use(auth);
 
 app.use('/users', usersRouter);
 app.use('/articles', articleRouter);
+app.use('/*', (req, res, next) => {
+  next(new NotFoundError('Страница не найдена'));
+});
 
 app.use(errorLogger);
+app.use(errors());
+app.use(errorMiddleware);
 
 app.listen(PORT);
