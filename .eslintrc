@@ -5,7 +5,6 @@
     "object-curly-newline": ["error", {
       "ObjectPattern": { "multiline": true }
     }],
-    "comma-dangle": ["error", "never"],
-    "consistent-return": "error"
+    "comma-dangle": ["error", "never"]
   }
 }

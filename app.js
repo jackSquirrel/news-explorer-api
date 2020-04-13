@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -27,7 +26,6 @@ mongoose.connect('mongodb://localhost:27017/explorer', {
   useUnifiedTopology: true
 })
   .then(() => {
-    console.log('Connected to MongoDb');
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser());
