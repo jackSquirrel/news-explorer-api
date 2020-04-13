@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi } = require('celebrate');
 
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { createUser, login } = require('./controllers/user');
 const { usersRouter } = require('./routes/users');
 const { articleRouter } = require('./routes/articles');
@@ -30,6 +31,7 @@ mongoose.connect('mongodb://localhost:27017/explorer', {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(requestLogger);
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -50,5 +52,7 @@ app.use(auth);
 
 app.use('/users', usersRouter);
 app.use('/articles', articleRouter);
+
+app.use(errorLogger);
 
 app.listen(PORT);
