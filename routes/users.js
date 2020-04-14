@@ -1,13 +1,7 @@
 const router = require('express').Router();
-const { celebrate, Joi } = require('celebrate');
 const { getUser } = require('../controllers/user');
+const { getUserValid } = require('../constants/validation');
 
-router.get('/me', celebrate({
-  query: Joi.object().keys({
-    user: Joi.object().keys({
-      _id: Joi.string().required()
-    })
-  }).unknown(true)
-}), getUser);
+router.get('/me', getUserValid, getUser);
 
 module.exports = router;

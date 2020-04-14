@@ -5,21 +5,19 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
+
+const { limiter } = require('./constants/limiter');
+const { base } = require('./constants/globals');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const router = require('./routes');
 
 const { PORT = 3000 } = process.env;
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100
-});
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/explorer', {
+mongoose.connect(base, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
