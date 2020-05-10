@@ -24,6 +24,9 @@ mongoose.connect(base, {
   useUnifiedTopology: true
 })
   .then(() => {
+    app.options('*', (req, res) => {
+      res.sendStatus(200);
+    });
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser());
