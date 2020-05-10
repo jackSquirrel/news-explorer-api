@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
+const cors = require('cors');
 
 const { limiter } = require('./constants/limiter');
 const { base } = require('./constants/globals');
@@ -24,9 +25,11 @@ mongoose.connect(base, {
   useUnifiedTopology: true
 })
   .then(() => {
-    app.options('*', (req, res) => {
-      res.sendStatus(200);
-    });
+    app.use(cors({
+      origin: 'http://localhost:8080',
+      optionSuccessStatus: 200,
+      credentials: true
+    }));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser());
