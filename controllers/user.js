@@ -51,8 +51,14 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req, res) => {
+  req.cookies.set('jwt', { maxAge: 0 });
+  res.send({ message: 'Выполнен выход из системы' });
+};
+
 module.exports = {
   getUser,
   createUser,
-  login
+  login,
+  logout
 };
