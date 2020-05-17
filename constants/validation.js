@@ -46,7 +46,7 @@ const getUserValid = celebrate({
 const loginValid = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().regex(/[-.\w]+@[-\w]+\.[a-z]+/).error(new Error('Неверный формат Email')),
-    password: Joi.string().required().error(new Error('Password - обязательное поле'))
+    password: Joi.string().required().error(new Error('Пароль - обязательное поле'))
   })
 });
 
@@ -54,9 +54,9 @@ const createUserVaild = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email().error(new Error('Неверный формат Email')),
     name: Joi.string().required().min(2).max(30)
-      .error(new Error('Name - обязательное поле')),
+      .error(new Error('Имя должно быть от 2 до 30 символов')),
     password: Joi.string().required().alphanum().min(5)
-      .error(new Error('Password - обязательное поле'))
+      .error(new Error('Пароль должен быть от 5 символов'))
   })
 });
 
