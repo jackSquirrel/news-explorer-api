@@ -52,7 +52,7 @@ const login = (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  req.cookies.set('jwt', { maxAge: 0 });
+  res.clearCookie('jwt');
   res.send({ message: 'Выполнен выход из системы' });
 };
 
