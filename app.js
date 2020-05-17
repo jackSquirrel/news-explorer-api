@@ -26,7 +26,7 @@ mongoose.connect(base, {
 })
   .then(() => {
     app.use(cors({
-      origin: 'https://jacksquirrel.github.io/news-explorer-frontend/index.html',
+      origin: 'https://jacksquirrel.github.io/news-explorer-frontend/',
       optionSuccessStatus: 200,
       credentials: true
     }));
